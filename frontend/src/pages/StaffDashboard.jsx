@@ -21,14 +21,14 @@ export default function StaffDashboard() {
       const headers = { 'Authorization': `Bearer ${token}` };
 
       // Fetch Stats
-      const resStats = await fetch('http://localhost:5000/api/leaves/stats', { headers });
+      const resStats = await fetch(import.meta.env.VITE_API_URL + '/api/leaves/stats', { headers });
       if (resStats.ok) {
         const data = await resStats.json();
         setStats(data);
       }
 
       // Fetch All Leaves
-      const resLeaves = await fetch('http://localhost:5000/api/leaves', { headers });
+      const resLeaves = await fetch(import.meta.env.VITE_API_URL + '/api/leaves', { headers });
       if (resLeaves.ok) {
         const data = await resLeaves.json();
         setLeaves(data);
@@ -57,7 +57,7 @@ export default function StaffDashboard() {
          absentDaysToAdd = parseInt(daysInput) || 1;
       }
 
-      const res = await fetch(`http://localhost:5000/api/leaves/${id}/status`, {
+      const res = await fetch(import.meta.env.VITE_API_URL + `/api/leaves/${id}/status`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',

@@ -23,14 +23,14 @@ export default function StudentDashboard() {
       const headers = { 'Authorization': `Bearer ${token}` };
 
       // Fetch Stats
-      const resStats = await fetch('http://localhost:5000/api/leaves/stats', { headers });
+      const resStats = await fetch(import.meta.env.VITE_API_URL + '/api/leaves/stats', { headers });
       if (resStats.ok) {
         const data = await resStats.json();
         setStats(data);
       }
 
       // Fetch Leaves
-      const resLeaves = await fetch('http://localhost:5000/api/leaves', { headers });
+      const resLeaves = await fetch(import.meta.env.VITE_API_URL + '/api/leaves', { headers });
       if (resLeaves.ok) {
         const data = await resLeaves.json();
         setLeaves(data);
@@ -63,7 +63,7 @@ export default function StudentDashboard() {
       const formattedFrom = formatDate(formData.fromDate);
       const formattedTo = formatDate(formData.toDate);
 
-      const res = await fetch('http://localhost:5000/api/leaves', {
+      const res = await fetch(import.meta.env.VITE_API_URL + '/api/leaves', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
